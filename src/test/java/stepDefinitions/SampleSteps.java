@@ -85,6 +85,14 @@ public class SampleSteps {
                 driver.findElement(By.xpath("//h2[1]")).getText());
     }
 
+    @Then("^I should see a heading two text$")
+    public void i_should_see_a_heading_two_text() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(driver.findElement(By.id("heading_2")).isDisplayed());
+        assertEquals("Heading 2 text",
+                driver.findElement(By.xpath("//h2[2]")).getText());
+    }
+
     @And("^I change age to (\\d+)$")
     public void iChangeAgeTo(int age) throws Throwable {
         String newAge = String.valueOf(age);
@@ -128,5 +136,26 @@ public class SampleSteps {
         driver.findElement(By.cssSelector("[value=\"lang_sp\"]")).sendKeys(" ");
         driver.findElement(By.xpath("//*[@value=\"good\"]")).click();
         System.out.println();
+    }
+
+    @Given("^I am on Action page$")
+    public void iAmOnTheActionPage() throws Throwable {
+        driver.get("https://kristinek.github.io/test-sample/examples/act");
+    }
+
+    @And("^I entered number: (\\d+)$")
+    public void iEnterNum(int num) throws Throwable {
+        driver.findElement(By.id("number")).clear();
+        driver.findElement(By.id("number")).sendKeys(String.valueOf(num));
+    }
+
+    @And("^I press result$")
+    public void iPressResult() throws Throwable {
+        driver.findElement(By.id("result_button_number")).click();
+    }
+
+    @Then("^Message is seen: \"(.*)\"$")
+    public void messageIsSeen(String message) throws Throwable {
+        assertEquals(message, driver.findElement(By.id("result_number")).getText());
     }
 }

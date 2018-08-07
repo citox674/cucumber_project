@@ -16,9 +16,16 @@ Feature: Introduction to cucumber part 2
     And I enter age: 61
     And I click submit age
     Then I see message: "Hello, Bob, you are an adult"
-@part2
+
+  @sample2
+  Scenario: my first scenario
+    Given I am on Action page
+    When I entered number: 7
+    And I press result
+    Then Message is seen: "You entered number: "7""
+
+  @part2
   Scenario: Enter a number 1
     Given I am on task page
     When I enter number: 35
     Then I should see an error: "Number is too small"
-
