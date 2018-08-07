@@ -129,4 +129,38 @@ public class SampleSteps {
         driver.findElement(By.xpath("//*[@value=\"good\"]")).click();
         System.out.println();
     }
+
+    @Then("^I should see a heading two text$")
+    public void i_should_see_a_heading_two_text() throws Throwable {
+        assertTrue(driver.findElement(By.id("heading_2")).isDisplayed());
+        assertEquals("Heading 2 text", driver.findElement(By.id("heading_2")));
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+        @Given("^I am on Action page$")
+    public void IamOn_Action_page()
+            throws Throwable{
+        driver.get("https://kristinek.github.io/test-sample/examples/act");
+    }
+
+    @When("^I enter number: (\\d+)  in number feild$")
+    public void i_enter_number_in_number_feild(int arg1) throws Throwable {
+        String number = String.valueOf(arg1);
+        driver.findElement(By.id("number")).clear();
+        driver.findElement(By.id("number")).sendKeys(number);
+        driver.findElement(By.xpath("//*[@type='number']")).click();
+
+    }
+    @And("^I press result$")
+    public void iPressResult() throws Throwable {
+        driver.findElement(By.id("result_button_number")).click();
+    }
+
+    @Then("^message \"([^\"]*)\"(\\d+)\"\"$")
+    public void message(String message, int arg2) throws Throwable {
+
+    assertEquals(message + '"' + arg2 + '"', driver.findElement(By.id("result_number")).getText());
+
+        }
+
 }
