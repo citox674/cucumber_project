@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.Map;
 
@@ -81,7 +82,7 @@ public class SampleSteps {
     @Then("^I should see heading two text$")
     public void i_should_see_heading_two_text() throws Throwable {
         assertTrue(driver.findElement(By.id("heading_2")).isDisplayed());
-        assertEquals("Heading 2 text", driver.findElement(By.id("heading_2")).getText());
+        assertEquals("Heading 2", driver.findElement(By.id("heading_2")).getText());
     }
 
     @Then("^I should see a heading text$")
@@ -119,8 +120,46 @@ public class SampleSteps {
         driver.findElement(By.xpath("//*[@type='button']")).click();
     }
 
+
+    @Given("^I am on Action Page$")
+    public void i_am_on_Action_Page() throws Throwable {
+        driver.get("https://kristinek.github.io/test-sample/examples/act");
+    }
+
+    @When("^I enter number (\\d+) in number field$")
+    public void i_enter_number_in_number_field(int number) throws Throwable {
+        WebElement numberField = driver.findElement(By.id("number"));
+        numberField.clear();
+        numberField.sendKeys(String.valueOf(number));
+    }
+
+    @When("^I press result$")
+    public void i_press_result() throws Throwable {
+        driver.findElement(By.id("result_button_number")).click();
+    }
+
+//    @Then("^message \"([^\"]*)\"(\\d+)\"\" is seen$")
+//    public void message_is_seen(String messageStart, int numberInMessage) throws Throwable {
+//        // "You entered number: "7"" ->
+//        assertEquals(messageStart + '"' + numberInMessage + '"',
+//                driver.findElement(By.id("result_number")).getText());
+//    }
+
+    @Then("^message \"(.*)\" is seen$")
+    public void message_is_seen(String message) throws Throwable {
+        // "You entered number: "7"" ->
+        assertEquals(message,
+                driver.findElement(By.id("result_number")).getText());
+    }
+
+
+
+
+
     @Then("^I should see an error: \"([^\"]*)\"$")
     public void iShouldSeeAnError(String errorText) throws Throwable {
         assertEquals(errorText, driver.findElement(By.id("ch1_error")).getText());
     }
+    
+
 }
