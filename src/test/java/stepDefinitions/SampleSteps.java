@@ -85,6 +85,16 @@ public class SampleSteps {
                 driver.findElement(By.xpath("//h2[1]")).getText());
     }
 
+// Adding for reading heading two text to be displayed.
+    @Then("^I should see heading two text$")
+    public void i_should_see_heading_two_text() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        //       throw new PendingException();
+        assertTrue(driver.findElement(By.id("heading_2")).isDisplayed());
+        assertEquals("Heading 2 text",
+                driver.findElement(By.xpath("//h2[2]")).getText());
+    }
+
     @And("^I change age to (\\d+)$")
     public void iChangeAgeTo(int age) throws Throwable {
         String newAge = String.valueOf(age);
@@ -129,4 +139,33 @@ public class SampleSteps {
         driver.findElement(By.xpath("//*[@value=\"good\"]")).click();
         System.out.println();
     }
+
+
+ // visit action page
+    @Given("^I am on action page$")
+    public void iAmOnActionPage() throws Throwable {
+        driver.get("https://kristinek.github.io/test-sample/examples/act");
+        assertEquals("https://kristinek.github.io/test-sample/examples/act",
+                driver.getCurrentUrl());
+    }
+//   entering the number
+    @When("^I enter number in number field: (\\d+)$")
+    public void iEnterNumberInNumberField(int arg0) throws Throwable {
+        String number = String.valueOf(arg0);
+        driver.findElement(By.id("number")).clear();
+        driver.findElement(By.id("number")).sendKeys(String.valueOf(number));
+        driver.findElement(By.xpath("//*[@id='number']")).click();
+    }
+// click on result
+    @And("^I press result$")
+    public void iPressResult() throws Throwable {
+        driver.findElement(By.id("result_button_number")).click();
+    }
+// message is being displayed
+    @Then("^I see a message: \"(.*)\"$")
+    public void iSeeAMessage(String message) throws Throwable {
+        assertEquals(message, driver.findElement(By.id("result_number")).getText());
+    }
+
+
 }
