@@ -78,6 +78,12 @@ public class SampleSteps {
                 driver.getCurrentUrl());
     }
 
+    @Then("^I should see heading two text$")
+    public void i_should_see_heading_two_text() throws Throwable {
+        assertTrue(driver.findElement(By.id("heading_2")).isDisplayed());
+        assertEquals("Heading 2 text", driver.findElement(By.id("heading_2")).getText());
+    }
+
     @Then("^I should see a heading text$")
     public void iShouldSeeAHeadingText() throws Throwable {
         assertTrue(driver.findElement(By.id("heading_1")).isDisplayed());
