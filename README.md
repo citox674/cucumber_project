@@ -20,10 +20,5 @@
    ![Alt text](img/git_push_2.png?raw=true "git push 2 via IDEA")
 
 ### Task
-Create a new Feature file (e.g. in the folder "features" click "New" -> "File" -> "Task.feature"), and inside write a few scenarios for the page https://kristinek.github.io/test-sample/tasks/task4 
-1) enter some values into the field, press "Send", check that correct data appears
-2) enter some values into the field (do not fill the "name" field), press "Send", press "Yes", check that the correct message appears - "Thank you for your feedback!"
-3) enter some values into the field (fill the "name" field), press "Send", press "Yes", check that the correct message appears - "Thank you, " + name_you_entered + ", for your feedback!"
-4) enter some values into the field, press "Send", press "No", check that the values which where filled previously are still filled
 
 ### Feedback
